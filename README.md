@@ -2,6 +2,8 @@
 
 This repo. contains the code for the paper `Physics-based machine learning for modeling IP3 induced calcium oscillations`.
 
+<img src="figures_readme/fig_1.png" alt="drawing" width="600"/>
+
 ## Contents
 
 * [learn_ip3](learn_ip3) - Models extrapolating in `IP3` for a single volume and number of `IP3Rs` (`IP3` receptors).
@@ -20,7 +22,6 @@ to get all the data. **Be aware** that this can be a lot to download, particular
 
 ## Figures
 
-<img src="figures_readme/fig_1.png" alt="drawing" width="600"/>
 <img src="figures_readme/fig_2.png" alt="drawing" width="600"/>
 <img src="figures_readme/fig_3.png" alt="drawing" width="600"/>
 <img src="figures_readme/fig_4.png" alt="drawing" width="600"/>
