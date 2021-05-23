@@ -1,0 +1,688 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     29158,        680]
+NotebookOptionsPosition[     27751,        645]
+NotebookOutlinePosition[     28183,        662]
+CellTagsIndexPosition[     28140,        659]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Import", "Title",
+ CellChangeTimes->{{3.828030854797159*^9, 
+  3.828030855307988*^9}},ExpressionUUID->"b11736db-2fb6-42db-9786-\
+b60c84759206"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pStrToNo", "[", "str_", "]"}], ":=", 
+  RowBox[{"ToExpression", "[", 
+   RowBox[{"StringReplace", "[", 
+    RowBox[{
+     RowBox[{"StringTake", "[", 
+      RowBox[{"str", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "5"}], ",", 
+         RowBox[{"-", "1"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"\"\<p\>\"", "\[Rule]", "\"\<.\>\""}]}], "]"}], "]"}]}]], "Input",\
+
+ InitializationCell->True,
+ CellChangeTimes->{{3.826330072950612*^9, 3.826330144839727*^9}},
+ CellLabel->
+  "In[132]:=",ExpressionUUID->"4514eabc-f9bf-4573-ad20-b2d5a1e4ceff"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"importCa2i", "[", 
+    RowBox[{
+    "volExp_", ",", "noIP3R_", ",", "fnameIdxStart_", ",", "fnameIdxEnd_", 
+     ",", "dataDir_", ",", "ip3s_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "dataCa2i", ",", "ip3", ",", "dataAll", ",", "i", ",", "fname"}], "}"}],
+      "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"SetDirectory", "[", "dataDir", "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"dataCa2i", "=", 
+       RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Monitor", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Do", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"ip3", "=", 
+             RowBox[{"ip3s", "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"dataCa2i", "[", "ip3", "]"}], "=", 
+             RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Do", "[", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"fname", "=", 
+                RowBox[{"\"\<vol_exp_\>\"", "<>", 
+                 RowBox[{"IntegerString", "[", 
+                  RowBox[{"volExp", ",", "10", ",", "2"}], "]"}], "<>", 
+                 "\"\</ip3r_\>\"", "<>", 
+                 RowBox[{"IntegerString", "[", 
+                  RowBox[{"noIP3R", ",", "10", ",", "5"}], "]"}], "<>", 
+                 "\"\</\>\"", "<>", "ip3", "<>", "\"\</\>\"", "<>", 
+                 RowBox[{"IntegerString", "[", 
+                  RowBox[{"fnameIdx", ",", "10", ",", "4"}], "]"}], "<>", 
+                 "\"\<.txt\>\""}]}], ";", "\[IndentingNewLine]", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"!", 
+                  RowBox[{"FileExistsQ", "[", "fname", "]"}]}], ",", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"fname", "=", 
+                   RowBox[{"\"\<vol_exp_\>\"", "<>", 
+                    RowBox[{"IntegerString", "[", 
+                    RowBox[{"volExp", ",", "10", ",", "2"}], "]"}], "<>", 
+                    "\"\</ip3r_\>\"", "<>", 
+                    RowBox[{"IntegerString", "[", 
+                    RowBox[{"noIP3R", ",", "10", ",", "5"}], "]"}], "<>", 
+                    "\"\</\>\"", "<>", "ip3", "<>", "\"\</\>\"", "<>", 
+                    RowBox[{"IntegerString", "[", 
+                    RowBox[{"fnameIdx", ",", "10", ",", "3"}], "]"}], "<>", 
+                    "\"\<.txt\>\""}]}], ";"}]}], "\[IndentingNewLine]", "]"}],
+                ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+               RowBox[{"dataAll", "=", 
+                RowBox[{"Import", "[", 
+                 RowBox[{"fname", ",", "\"\<Table\>\""}], "]"}]}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{"AppendTo", "[", 
+                RowBox[{
+                 RowBox[{"dataCa2i", "[", "ip3", "]"}], ",", 
+                 RowBox[{"dataAll", "[", 
+                  RowBox[{"[", 
+                   RowBox[{
+                    RowBox[{"2", ";;"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "3"}], "}"}]}], "]"}], "]"}]}], "]"}], 
+               ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", ",", 
+              RowBox[{"{", 
+               RowBox[{"fnameIdx", ",", "fnameIdxStart", ",", "fnameIdxEnd"}],
+                "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", 
+             RowBox[{"Length", "[", "ip3s", "]"}]}], "}"}]}], "]"}], ";"}], 
+        "\[IndentingNewLine]", ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Text", "[", "\"\<IP3 conc: \>\"", "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"ProgressIndicator", "[", 
+            RowBox[{"i", ",", 
+             RowBox[{"{", 
+              RowBox[{"1", ",", 
+               RowBox[{"Length", "[", "ip3s", "]"}]}], "}"}]}], "]"}]}], 
+          "\[IndentingNewLine]", "}"}], "]"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "dataCa2i", "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.791568082682005*^9, 3.791568158943796*^9}, {
+  3.791568206359457*^9, 3.791568207132494*^9}, {3.791568321782393*^9, 
+  3.7915683231543407`*^9}, {3.791568647787736*^9, 3.7915686552508802`*^9}, {
+  3.7915699042616987`*^9, 3.791569905606016*^9}, {3.824748085998331*^9, 
+  3.824748086746049*^9}, {3.824909451770805*^9, 3.824909464290324*^9}, {
+  3.8263715023111343`*^9, 3.82637151475686*^9}, {3.826371613976129*^9, 
+  3.82637164643601*^9}, {3.826371703987679*^9, 3.826371706192267*^9}, {
+  3.826372037665573*^9, 3.826372073209734*^9}, {3.8280138957394123`*^9, 
+  3.828013952848797*^9}, {3.828014216360078*^9, 3.8280142164495487`*^9}, {
+  3.828014656898851*^9, 3.828014658613164*^9}, {3.828015015459971*^9, 
+  3.828015031196454*^9}, {3.8280165927649*^9, 3.828016610909235*^9}, {
+  3.828030857171858*^9, 3.8280308585188713`*^9}, {3.828031376569174*^9, 
+  3.828031398180332*^9}},
+ CellLabel->
+  "In[133]:=",ExpressionUUID->"d5630424-de35-40c3-bbfa-6f79b2339dab"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Bifurcation diagram", "Title",
+ CellChangeTimes->{{3.828015332041422*^9, 3.8280153326991777`*^9}, {
+  3.828030911198838*^9, 
+  3.8280309138082123`*^9}},ExpressionUUID->"6dc323f5-8eda-4365-8008-\
+8d9522523e69"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"calculateMinsMaxs", "[", 
+    RowBox[{"dataCa2i_", ",", "ip3s_", ",", "volExp_", ",", "n_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "errMean", ",", "errStd", ",", "trajs", ",", "minCa2i", ",", "maxCa2i", 
+       ",", "avogadro", ",", "vol", ",", "errMax", ",", "errMin", ",", "mean",
+        ",", "std", ",", "lowers", ",", "uppers", ",", "errLowers", ",", 
+       "errUppers", ",", "idx"}], "}"}], "\[IndentingNewLine]", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"Mean", ",", " ", "std"}], " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"avogadro", "=", "6.02214076`*^23"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"maxCa2i", "=", 
+       RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"minCa2i", "=", 
+       RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"errMax", "=", 
+       RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"errMin", "=", 
+       RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Do", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"trajs", "=", 
+          RowBox[{
+           RowBox[{"dataCa2i", "[", "ip3", "]"}], "[", 
+           RowBox[{"[", 
+            RowBox[{";;", ",", 
+             RowBox[{
+              RowBox[{"-", "400"}], ";;"}], ",", "2"}], "]"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+          "Convert", " ", "counts", " ", "to", " ", "concs", " ", "in", " ", 
+           "uM"}], " ", "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"vol", "=", 
+          SuperscriptBox["10", 
+           RowBox[{
+            RowBox[{"-", "1"}], "*", "volExp"}]]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"trajs", "*=", 
+          RowBox[{
+           SuperscriptBox["10", "6"], "/", 
+           RowBox[{"(", 
+            RowBox[{"vol", "*", "avogadro"}], ")"}]}]}], ";", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"mean", "=", 
+          RowBox[{
+           RowBox[{"Mean", "[", "trajs", "]"}], "//", "N"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"std", "=", 
+          RowBox[{
+           RowBox[{"StandardDeviation", "[", "trajs", "]"}], "//", "N"}]}], 
+         ";", "\[IndentingNewLine]", 
+         RowBox[{"errMean", "=", 
+          RowBox[{"std", "/", 
+           RowBox[{"Sqrt", "[", "n", "]"}]}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"errStd", "=", 
+          RowBox[{"std", "/", 
+           RowBox[{"Sqrt", "[", 
+            RowBox[{"2", "*", 
+             RowBox[{"(", 
+              RowBox[{"n", "-", "1"}], ")"}]}], "]"}]}]}], ";", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          RowBox[{"Maxs", " ", "mins"}], " ", "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"uppers", "=", 
+          RowBox[{"mean", "+", "std"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"lowers", "=", 
+          RowBox[{"mean", "-", "std"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"errUppers", "=", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"Sqrt", "[", 
+             RowBox[{
+              SuperscriptBox[
+               RowBox[{"errMean", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], "2"], "+", 
+              SuperscriptBox[
+               RowBox[{"errStd", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], "2"]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", 
+              RowBox[{"Length", "[", "errMean", "]"}]}], "}"}]}], "]"}]}], 
+         ";", "\[IndentingNewLine]", 
+         RowBox[{"errLowers", "=", "errUppers"}], ";", "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"maxCa2i", "[", "ip3", "]"}], "=", 
+          RowBox[{"Max", "[", "uppers", "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"minCa2i", "[", "ip3", "]"}], "=", 
+          RowBox[{"Min", "[", "lowers", "]"}]}], ";", "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          RowBox[{"Error", " ", "in", " ", "those"}], " ", "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{"idx", "=", 
+          RowBox[{
+           RowBox[{"Position", "[", 
+            RowBox[{"uppers", ",", 
+             RowBox[{"Max", "[", "uppers", "]"}]}], "]"}], "[", 
+           RowBox[{"[", 
+            RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"errMax", "[", "ip3", "]"}], "=", 
+          RowBox[{"errUppers", "[", 
+           RowBox[{"[", "idx", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"idx", "=", 
+          RowBox[{
+           RowBox[{"Position", "[", 
+            RowBox[{"lowers", ",", 
+             RowBox[{"Max", "[", "lowers", "]"}]}], "]"}], "[", 
+           RowBox[{"[", 
+            RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"errMin", "[", "ip3", "]"}], "=", 
+          RowBox[{"errLowers", "[", 
+           RowBox[{"[", "idx", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", ",", 
+        RowBox[{"{", 
+         RowBox[{"ip3", ",", " ", "ip3s"}], "}"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", 
+       RowBox[{"{", 
+        RowBox[{"maxCa2i", ",", "minCa2i", ",", "errMax", ",", "errMin"}], 
+        "}"}], "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",\
+
+ InitializationCell->True,
+ CellChangeTimes->{{3.791568366482937*^9, 3.7915684147553873`*^9}, {
+   3.824906269294724*^9, 3.824906394218004*^9}, {3.82490649236849*^9, 
+   3.824906509249901*^9}, {3.824906625489193*^9, 3.824906629433631*^9}, {
+   3.824906820695853*^9, 3.824906858976255*^9}, {3.82490753817344*^9, 
+   3.8249075781940203`*^9}, {3.824909470218799*^9, 3.824909477665174*^9}, {
+   3.824910428851822*^9, 3.824910576657415*^9}, {3.824910667040666*^9, 
+   3.824910716031932*^9}, {3.8249110342360907`*^9, 3.824911044575141*^9}, {
+   3.824911089091831*^9, 3.8249110913550997`*^9}, {3.8249120326053667`*^9, 
+   3.824912336494356*^9}, {3.824912369809566*^9, 3.8249123823743467`*^9}, {
+   3.824912488257283*^9, 3.824912491424589*^9}, {3.824912650438706*^9, 
+   3.8249126825983686`*^9}, {3.8249127189797583`*^9, 3.824912776303566*^9}, {
+   3.824913919396893*^9, 3.8249139478066483`*^9}, {3.8249144886909657`*^9, 
+   3.8249145201292763`*^9}, {3.826333185194077*^9, 3.826333194523532*^9}, {
+   3.826333335042235*^9, 3.8263333379413977`*^9}, 3.828014949356188*^9, {
+   3.8280309169567413`*^9, 3.8280309218895483`*^9}, {3.828031624697871*^9, 
+   3.828031645874752*^9}},
+ CellLabel->
+  "In[134]:=",ExpressionUUID->"05d324c9-445c-4d90-9826-fae7538a3672"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"makeCa2iBifs", "[", 
+   RowBox[{
+   "volExp_", ",", "noIP3RsAndDirs_", ",", "ip3s_", ",", "fnameIdxStart_", 
+    ",", "fnameIdxEnd_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "ca2iMin", ",", "ca2iMax", ",", "noIP3R", ",", "dataCa2i", ",", 
+      "ca2iMaxArr", ",", "ca2iMinArr", ",", "errMax", ",", "errMin", ",", "n",
+       ",", "idxNoIP3R", ",", "dataDir", ",", "ip3Vals"}], "}"}], 
+    "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"ca2iMin", "=", 
+      RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"ca2iMax", "=", 
+      RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"n", "=", 
+      RowBox[{"fnameIdxEnd", "-", "fnameIdxStart", "+", "1"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"ip3Vals", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"pStrToNo", "[", "x", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "ip3s"}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"Monitor", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Do", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"noIP3R", ",", "dataDir"}], "}"}], "=", 
+            RowBox[{"noIP3RsAndDirs", "[", 
+             RowBox[{"[", "idxNoIP3R", "]"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"(*", " ", "Import", " ", "*)"}], "\[IndentingNewLine]", 
+           RowBox[{"dataCa2i", "=", 
+            RowBox[{"importCa2i", "[", 
+             RowBox[{
+             "volExp", ",", "noIP3R", ",", "fnameIdxStart", ",", 
+              "fnameIdxEnd", ",", "dataDir", ",", "ip3s"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"(*", " ", 
+            RowBox[{"Bif", " ", "diagram"}], " ", "*)"}], 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+             "ca2iMaxArr", ",", "ca2iMinArr", ",", "errMax", ",", "errMin"}], 
+             "}"}], "=", 
+            RowBox[{"calculateMinsMaxs", "[", 
+             RowBox[{"dataCa2i", ",", "ip3s", ",", "volExp", ",", "n"}], 
+             "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"(*", " ", 
+            RowBox[{"Reformat", " ", "and", " ", "store"}], " ", "*)"}], 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"ca2iMin", "[", "noIP3R", "]"}], "=", 
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"Around", "[", 
+               RowBox[{
+                RowBox[{"ca2iMinArr", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], ",", 
+                RowBox[{"errMin", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", 
+                RowBox[{"Length", "[", "ca2iMinArr", "]"}]}], "}"}]}], 
+             "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"ca2iMax", "[", "noIP3R", "]"}], "=", 
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"Around", "[", 
+               RowBox[{
+                RowBox[{"ca2iMaxArr", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], ",", 
+                RowBox[{"errMax", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", 
+                RowBox[{"Length", "[", "ca2iMaxArr", "]"}]}], "}"}]}], 
+             "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"ca2iMin", "[", "noIP3R", "]"}], "=", 
+            RowBox[{"Transpose", "[", 
+             RowBox[{"{", 
+              RowBox[{"ip3Vals", ",", 
+               RowBox[{"ca2iMin", "[", "noIP3R", "]"}]}], "}"}], "]"}]}], ";",
+            "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"ca2iMax", "[", "noIP3R", "]"}], "=", 
+            RowBox[{"Transpose", "[", 
+             RowBox[{"{", 
+              RowBox[{"ip3Vals", ",", 
+               RowBox[{"ca2iMax", "[", "noIP3R", "]"}]}], "}"}], "]"}]}], 
+           ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", ",", 
+          RowBox[{"{", 
+           RowBox[{"idxNoIP3R", ",", 
+            RowBox[{"Length", "[", "noIP3RsAndDirs", "]"}]}], "}"}]}], "]"}], 
+        ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", ",", 
+       RowBox[{"Row", "[", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Text", "[", "\"\<# IP3R: \>\"", "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"ProgressIndicator", "[", 
+           RowBox[{"idxNoIP3R", ",", 
+            RowBox[{"{", 
+             RowBox[{"1", ",", 
+              RowBox[{"Length", "[", "noIP3RsAndDirs", "]"}]}], "}"}]}], 
+           "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], "]"}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", 
+      RowBox[{"{", 
+       RowBox[{"ca2iMin", ",", "ca2iMax"}], "}"}], "]"}], ";"}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.828015875183755*^9, 3.828015973664727*^9}, {
+  3.828016144737336*^9, 3.828016160658724*^9}, {3.82801637055336*^9, 
+  3.828016385637052*^9}, {3.828030930863538*^9, 3.8280309475994453`*^9}, {
+  3.828031611519706*^9, 3.828031617965226*^9}, {3.828031660293187*^9, 
+  3.828031688737611*^9}},
+ CellLabel->
+  "In[135]:=",ExpressionUUID->"693c4644-b87d-4b43-8613-d6c75f159d1d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Import/export", "Title",
+ CellChangeTimes->{{3.828030959345118*^9, 
+  3.8280309615106153`*^9}},ExpressionUUID->"2d72a320-09ed-481a-bd1f-\
+80e7e74e4474"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"exportDataBif", "[", 
+   RowBox[{"volExp_", ",", "ca2iMin_", ",", "ca2iMax_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "f", ",", "ip3Vals", ",", "ip3Val", ",", "min", ",", "max", ",", "s"}], 
+     "}"}], "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"SetDirectory", "[", 
+      RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Do", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"f", "=", 
+         RowBox[{"OpenWrite", "[", 
+          RowBox[{"\"\<bifurcation_diagram_data/vol_\>\"", "<>", 
+           RowBox[{"ToString", "[", "volExp", "]"}], "<>", 
+           "\"\<_no_ip3r_\>\"", "<>", 
+           RowBox[{"ToString", "[", "noIP3R", "]"}], "<>", "\"\<.txt\>\""}], 
+          "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"ip3Vals", "=", 
+         RowBox[{
+          RowBox[{"ca2iMin", "[", "noIP3R", "]"}], "[", 
+          RowBox[{"[", 
+           RowBox[{";;", ",", "1"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Do", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"ip3Val", "=", 
+            RowBox[{"ip3Vals", "[", 
+             RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"min", "=", 
+            RowBox[{
+             RowBox[{"ca2iMin", "[", "noIP3R", "]"}], "[", 
+             RowBox[{"[", 
+              RowBox[{"i", ",", "2"}], "]"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"max", "=", 
+            RowBox[{
+             RowBox[{"ca2iMax", "[", "noIP3R", "]"}], "[", 
+             RowBox[{"[", 
+              RowBox[{"i", ",", "2"}], "]"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"s", "=", 
+            RowBox[{
+             RowBox[{"ToString", "[", "ip3Val", "]"}], "<>", "\"\< \>\"", "<>", 
+             RowBox[{"ToString", "[", 
+              RowBox[{"min", "[", "\"\<Value\>\"", "]"}], "]"}], "<>", 
+             "\"\< \>\"", "<>", 
+             RowBox[{"ToString", "[", 
+              RowBox[{"min", "[", "\"\<Uncertainty\>\"", "]"}], "]"}], "<>", 
+             "\"\< \>\"", "<>", 
+             RowBox[{"ToString", "[", 
+              RowBox[{"max", "[", "\"\<Value\>\"", "]"}], "]"}], "<>", 
+             "\"\< \>\"", "<>", 
+             RowBox[{"ToString", "[", 
+              RowBox[{"max", "[", "\"\<Uncertainty\>\"", "]"}], "]"}], "<>", 
+             "\"\<\\n\>\""}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"WriteString", "[", 
+            RowBox[{"f", ",", "s"}], "]"}]}], "\[IndentingNewLine]", ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", 
+            RowBox[{"Length", "[", "ip3Vals", "]"}]}], "}"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"Close", "[", "f", "]"}]}], "\[IndentingNewLine]", ",", 
+       RowBox[{"{", 
+        RowBox[{"noIP3R", ",", 
+         RowBox[{"Keys", "[", "ca2iMin", "]"}]}], "}"}]}], "]"}], ";"}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.826331854486671*^9, 3.826331874646488*^9}, {
+  3.826332246179654*^9, 3.826332248731101*^9}, {3.826332311837768*^9, 
+  3.8263323405747766`*^9}, {3.826332436103136*^9, 3.8263325231132097`*^9}, {
+  3.826332712980555*^9, 3.826332735913006*^9}, {3.826332803506909*^9, 
+  3.8263328735498447`*^9}, {3.82633291084872*^9, 3.826332915160863*^9}, {
+  3.8280151786849823`*^9, 3.8280151787469587`*^9}, {3.828015305708789*^9, 
+  3.828015309191144*^9}, {3.828015346847946*^9, 3.8280153865003967`*^9}, {
+  3.828036030637504*^9, 3.8280360497236032`*^9}},
+ CellLabel->
+  "In[142]:=",ExpressionUUID->"e5ca3c7b-3ecd-4e77-9a61-182b368d6cbe"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"importDataBif", "[", 
+    RowBox[{"volExp_", ",", "noIP3Rs_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"ca2iMin", ",", "ca2iMax", ",", "f", ",", "data"}], "}"}], 
+     "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"SetDirectory", "[", 
+       RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"ca2iMin", "=", 
+       RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"ca2iMax", "=", 
+       RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Do", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"f", "=", 
+          RowBox[{"\"\<bifurcation_diagram_data/vol_\>\"", "<>", 
+           RowBox[{"ToString", "[", "volExp", "]"}], "<>", 
+           "\"\<_no_ip3r_\>\"", "<>", 
+           RowBox[{"ToString", "[", "noIP3R", "]"}], "<>", "\"\<.txt\>\""}]}],
+          ";", "\[IndentingNewLine]", 
+         RowBox[{"data", "=", 
+          RowBox[{"Import", "[", 
+           RowBox[{"f", ",", "\"\<Table\>\""}], "]"}]}], ";", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"ca2iMin", "[", "noIP3R", "]"}], "=", 
+          RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"ca2iMax", "[", "noIP3R", "]"}], "=", 
+          RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Do", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"AppendTo", "[", 
+             RowBox[{
+              RowBox[{"ca2iMin", "[", "noIP3R", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"x", "[", 
+                 RowBox[{"[", "1", "]"}], "]"}], ",", 
+                RowBox[{"Around", "[", 
+                 RowBox[{
+                  RowBox[{"x", "[", 
+                   RowBox[{"[", "2", "]"}], "]"}], ",", 
+                  RowBox[{"x", "[", 
+                   RowBox[{"[", "3", "]"}], "]"}]}], "]"}]}], "}"}]}], "]"}], 
+            ";", "\[IndentingNewLine]", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{
+              RowBox[{"ca2iMax", "[", "noIP3R", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"x", "[", 
+                 RowBox[{"[", "1", "]"}], "]"}], ",", 
+                RowBox[{"Around", "[", 
+                 RowBox[{
+                  RowBox[{"x", "[", 
+                   RowBox[{"[", "4", "]"}], "]"}], ",", 
+                  RowBox[{"x", "[", 
+                   RowBox[{"[", "5", "]"}], "]"}]}], "]"}]}], "}"}]}], "]"}], 
+            ";"}], "\[IndentingNewLine]", ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "data"}], "}"}]}], "]"}], ";"}], 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", ",", 
+        RowBox[{"{", 
+         RowBox[{"noIP3R", ",", "noIP3Rs"}], "}"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", 
+       RowBox[{"{", 
+        RowBox[{"ca2iMin", ",", "ca2iMax"}], "}"}], "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.8266319859511223`*^9, 3.82663213248077*^9}, {
+  3.826632284113715*^9, 3.826632284427948*^9}, {3.8266325910659847`*^9, 
+  3.8266325924863577`*^9}, {3.828015568720632*^9, 3.828015617363564*^9}, {
+  3.8280360274157352`*^9, 3.828036028628592*^9}},
+ CellLabel->
+  "In[141]:=",ExpressionUUID->"140cf6b7-f446-41e9-ab12-97d9756105b3"]
+}, Open  ]]
+},
+AutoGeneratedPackage->Automatic,
+WindowSize->{808, 911},
+WindowMargins->{{108, Automatic}, {-18, Automatic}},
+FrontEndVersion->"12.2 for Mac OS X x86 (64-bit) (December 12, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e5e3c51d-a8da-4b3f-bd77-3f8de66e835b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 149, 3, 98, "Title",ExpressionUUID->"b11736db-2fb6-42db-9786-b60c84759206"],
+Cell[732, 27, 595, 17, 46, "Input",ExpressionUUID->"4514eabc-f9bf-4573-ad20-b2d5a1e4ceff",
+ InitializationCell->True],
+Cell[1330, 46, 5561, 114, 761, "Input",ExpressionUUID->"d5630424-de35-40c3-bbfa-6f79b2339dab",
+ InitializationCell->True]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6928, 165, 215, 4, 98, "Title",ExpressionUUID->"6dc323f5-8eda-4365-8008-8d9522523e69"],
+Cell[7146, 171, 7052, 156, 919, "Input",ExpressionUUID->"05d324c9-445c-4d90-9826-fae7538a3672",
+ InitializationCell->True],
+Cell[14201, 329, 5794, 132, 866, "Input",ExpressionUUID->"693c4644-b87d-4b43-8613-d6c75f159d1d",
+ InitializationCell->True]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20032, 466, 158, 3, 98, "Title",ExpressionUUID->"2d72a320-09ed-481a-bd1f-80e7e74e4474"],
+Cell[20193, 471, 3853, 84, 488, "Input",ExpressionUUID->"e5ca3c7b-3ecd-4e77-9a61-182b368d6cbe",
+ InitializationCell->True],
+Cell[24049, 557, 3686, 85, 530, "Input",ExpressionUUID->"140cf6b7-f446-41e9-ab12-97d9756105b3",
+ InitializationCell->True]
+}, Open  ]]
+}
+]
+*)
+

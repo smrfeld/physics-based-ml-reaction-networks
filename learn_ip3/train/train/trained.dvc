@@ -1,0 +1,5 @@
+outs:
+- md5: a4644d11a60843640f7741186a03ac3c.dir
+  size: 202444336
+  nfiles: 167
+  path: trained

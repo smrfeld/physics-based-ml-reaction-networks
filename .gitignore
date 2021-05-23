@@ -1,0 +1,9 @@
+trained/
+legacy/
+__pycache__/
+.DS_Store
+data*/
+bin/
+build/
+cache/
+linear_models/

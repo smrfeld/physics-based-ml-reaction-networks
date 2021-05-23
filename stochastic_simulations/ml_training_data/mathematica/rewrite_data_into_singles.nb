@@ -1,0 +1,311 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     12057,        303]
+NotebookOptionsPosition[     11118,        279]
+NotebookOutlinePosition[     11514,        295]
+CellTagsIndexPosition[     11471,        292]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rewrite", "[", 
+   RowBox[{"sampleDir_", ",", "ip3DestDir_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "fileNames", ",", "data", ",", "baseName", ",", "species", ",", "tpts", 
+      ",", "dataWrite", ",", "sample", ",", "fileNameExport"}], "}"}], 
+    "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", "Files", " ", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"fileNames", "=", 
+      RowBox[{"FileNames", "[", 
+       RowBox[{"\"\<*.txt\>\"", ",", "sampleDir"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", "Import", " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"data", "=", 
+      RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Do", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"baseName", "=", 
+         RowBox[{"FileBaseName", "[", "fileName", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"data", "[", "baseName", "]"}], "=", 
+         RowBox[{"Transpose", "[", 
+          RowBox[{"Import", "[", 
+           RowBox[{"fileName", ",", "\"\<Table\>\""}], "]"}], "]"}]}], ";"}], 
+       "\[IndentingNewLine]", ",", 
+       RowBox[{"{", 
+        RowBox[{"fileName", ",", "fileNames"}], "}"}]}], "]"}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"Reformat", " ", "into", " ", "matrix"}], " ", "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"species", "=", 
+      RowBox[{"Sort", "[", 
+       RowBox[{"Keys", "[", "data", "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"tpts", "=", 
+      RowBox[{
+       RowBox[{"data", "[", 
+        RowBox[{"species", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"dataWrite", "=", 
+      RowBox[{"ConstantArray", "[", 
+       RowBox[{"0", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Length", "[", "species", "]"}], "+", "1"}], ",", 
+          RowBox[{"Length", "[", "tpts", "]"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"dataWrite", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "=", "tpts"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Do", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"dataWrite", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", "+", "1"}], "]"}], "]"}], "=", 
+         RowBox[{
+          RowBox[{"data", "[", 
+           RowBox[{"species", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Length", "[", "species", "]"}]}], "}"}]}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"dataWrite", "=", 
+      RowBox[{"Transpose", "[", "dataWrite", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PrependTo", "[", 
+      RowBox[{"dataWrite", ",", 
+       RowBox[{"Join", "[", 
+        RowBox[{
+         RowBox[{"{", "\"\<t\>\"", "}"}], ",", "species"}], "]"}]}], "]"}], 
+     ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", "Export", " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"sample", "=", 
+      RowBox[{"ToExpression", "[", 
+       RowBox[{"FileBaseName", "[", "sampleDir", "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"fileNameExport", "=", 
+      RowBox[{"ip3DestDir", "<>", 
+       RowBox[{"IntegerString", "[", 
+        RowBox[{"sample", ",", "10", ",", "4"}], "]"}], "<>", 
+       "\"\<.txt\>\""}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Export", "[", 
+      RowBox[{"fileNameExport", ",", "dataWrite", ",", "\"\<Table\>\"", ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "\[Rule]", "\"\< \>\""}]}], "]"}], 
+     ";"}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.8275014661847067`*^9, 3.827501510445354*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"7ecfc29b-e524-4fa8-a46b-613b18dde638"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rewriteSamples", "[", 
+   RowBox[{"ip3Dir_", ",", "destDir_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "ip3", ",", "ip3DestDir", ",", "sampleDirs", ",", "idxSample", ",", 
+      "sampleDir"}], "}"}], "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{
+     "Ensure", " ", "ip3", " ", "dir", " ", "exists", " ", "in", " ", 
+      "dest"}], " ", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"ip3", "=", 
+      RowBox[{"FileBaseName", "[", "ip3Dir", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"ip3DestDir", "=", 
+      RowBox[{"destDir", "<>", "ip3", "<>", "\"\</\>\""}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"DirectoryQ", "[", "ip3DestDir", "]"}]}], ",", 
+       RowBox[{"CreateDirectory", "[", "ip3DestDir", "]"}]}], "]"}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"sampleDirs", "=", 
+      RowBox[{"FileNames", "[", 
+       RowBox[{"\"\<*\>\"", ",", "ip3Dir"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"Monitor", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Do", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"sampleDir", "=", 
+            RowBox[{"sampleDirs", "[", 
+             RowBox[{"[", "idxSample", "]"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"rewrite", "[", 
+            RowBox[{"sampleDir", ",", "ip3DestDir"}], "]"}], ";"}], 
+          "\[IndentingNewLine]", ",", 
+          RowBox[{"{", 
+           RowBox[{"idxSample", ",", "1", ",", 
+            RowBox[{"Length", "[", "sampleDirs", "]"}]}], "}"}]}], "]"}], 
+        ";"}], "\[IndentingNewLine]", ",", 
+       RowBox[{"Row", "[", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Text", "[", "\"\<Sample #: \>\"", "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"ProgressIndicator", "[", 
+           RowBox[{"idxSample", ",", 
+            RowBox[{"{", 
+             RowBox[{"1", ",", 
+              RowBox[{"Length", "[", "sampleDirs", "]"}]}], "}"}]}], "]"}]}], 
+         "\[IndentingNewLine]", "}"}], "]"}]}], "]"}]}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.8275015309603033`*^9, 3.827501645459158*^9}, {
+  3.827501773486146*^9, 3.8275017824702787`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"f37e1714-a756-4f58-9422-92d0b2cbc098"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rewriteIP3s", "[", 
+   RowBox[{"sourceDir_", ",", "destDir_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"sourceIP3s", ",", "ip3Dir", ",", "idxIP3"}], "}"}], 
+    "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"SetDirectory", "[", 
+      RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"DirectoryQ", "[", "destDir", "]"}]}], ",", 
+       RowBox[{"CreateDirectory", "[", "destDir", "]"}]}], "]"}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"sourceIP3s", "=", 
+      RowBox[{"FileNames", "[", 
+       RowBox[{"\"\<*\>\"", ",", "sourceDir"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"Monitor", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Do", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"ip3Dir", "=", 
+            RowBox[{"sourceIP3s", "[", 
+             RowBox[{"[", "idxIP3", "]"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"rewriteSamples", "[", 
+            RowBox[{"ip3Dir", ",", "destDir"}], "]"}], ";"}], 
+          "\[IndentingNewLine]", ",", 
+          RowBox[{"{", 
+           RowBox[{"idxIP3", ",", "1", ",", 
+            RowBox[{"Length", "[", "sourceIP3s", "]"}]}], "}"}]}], "]"}], 
+        ";"}], "\[IndentingNewLine]", ",", 
+       RowBox[{"Row", "[", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Text", "[", "\"\<IP3: \>\"", "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"ProgressIndicator", "[", 
+           RowBox[{"idxIP3", ",", 
+            RowBox[{"{", 
+             RowBox[{"1", ",", 
+              RowBox[{"Length", "[", "sourceIP3s", "]"}]}], "}"}]}], "]"}]}], 
+         "\[IndentingNewLine]", "}"}], "]"}]}], "]"}]}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.827501634930196*^9, 3.8275017344961967`*^9}, {
+  3.827501767056642*^9, 3.8275017716580257`*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"ebd50be2-47f6-4c58-9347-c29146195097"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "sourceDir", "=", "\"\<../data_tau_leaping/vol_exp_14/ip3r_05000/\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "destDir", "=", "\"\<../data_tau_leaping_rw/vol_exp_14/ip3r_05000/\>\""}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.827500728388506*^9, 3.827500790180181*^9}, {
+  3.8275008573613234`*^9, 3.827500857884939*^9}, {3.8275016663502283`*^9, 
+  3.827501666734913*^9}, {3.827611495515461*^9, 3.827611497558259*^9}, {
+  3.82762478445407*^9, 3.82762480628543*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"682da687-32ae-479a-ba32-efe788355fb2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"rewriteIP3s", "[", 
+  RowBox[{"sourceDir", ",", "destDir"}], "]"}]], "Input",
+ CellChangeTimes->{{3.827500794777461*^9, 3.827500885943458*^9}, {
+  3.827500948924404*^9, 3.8275011598727407`*^9}, {3.827501192246029*^9, 
+  3.827501216189883*^9}, {3.827501250455166*^9, 3.827501477488489*^9}, {
+  3.8275015182388353`*^9, 3.8275015223346767`*^9}, {3.827501604726647*^9, 
+  3.827501605863019*^9}, {3.827501648611184*^9, 3.827501649412632*^9}, {
+  3.827501745882991*^9, 3.827501747722245*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"4a696ef7-d608-4aa7-8fe5-844ad9099352"],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.8276248319530687`*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"6d18cdd4-dc8d-47d5-aa05-ce731b0f3208"]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{Automatic, 16}, {Automatic, 9}},
+FrontEndVersion->"12.2 for Mac OS X x86 (64-bit) (December 12, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"f89136e5-9534-4262-bde2-32cf59be0b71"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 4247, 102, 635, "Input",ExpressionUUID->"7ecfc29b-e524-4fa8-a46b-613b18dde638",
+ InitializationCell->True],
+Cell[4808, 124, 2629, 63, 446, "Input",ExpressionUUID->"f37e1714-a756-4f58-9422-92d0b2cbc098",
+ InitializationCell->True],
+Cell[7440, 189, 2283, 55, 404, "Input",ExpressionUUID->"ebd50be2-47f6-4c58-9347-c29146195097",
+ InitializationCell->True],
+Cell[9726, 246, 603, 13, 52, "Input",ExpressionUUID->"682da687-32ae-479a-ba32-efe788355fb2"],
+Cell[CellGroupData[{
+Cell[10354, 263, 588, 9, 30, "Input",ExpressionUUID->"4a696ef7-d608-4aa7-8fe5-844ad9099352"],
+Cell[10945, 274, 157, 2, 34, "Output",ExpressionUUID->"6d18cdd4-dc8d-47d5-aa05-ce731b0f3208"]
+}, Open  ]]
+}
+]
+*)
+
