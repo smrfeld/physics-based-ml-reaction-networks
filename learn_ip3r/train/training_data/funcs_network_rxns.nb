@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    440750,      10291]
-NotebookOptionsPosition[    415899,       9861]
-NotebookOutlinePosition[    416325,       9878]
-CellTagsIndexPosition[    416282,       9875]
+NotebookDataLength[    440809,      10292]
+NotebookOptionsPosition[    415958,       9862]
+NotebookOutlinePosition[    416384,       9879]
+CellTagsIndexPosition[    416341,       9876]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -9456,14 +9456,15 @@ Cell[BoxData[{
  RowBox[{"SetDirectory", "[", 
   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Get", "[", "\"\<../../funcs_rxns_moms.m\>\"", "]"}], 
+  RowBox[{"Get", "[", "\"\<../../package/funcs_rxns_moms.m\>\"", "]"}], 
   ";"}]}], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.8258837730534678`*^9, 3.825883819050502*^9}, {
   3.827352939656767*^9, 3.827352940070969*^9}, {3.8307986098409147`*^9, 
-  3.830798612846264*^9}},ExpressionUUID->"9c286fac-fee4-4aa7-9840-\
+  3.830798612846264*^9}, {3.830808185348743*^9, 
+  3.8308081868545513`*^9}},ExpressionUUID->"9c286fac-fee4-4aa7-9840-\
 dc12e032e358"]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -10270,27 +10271,27 @@ Cell[398673, 9436, 241, 5, 30, "Input",ExpressionUUID->"fb4f7a2c-9480-43ca-beba-
 }, Closed]],
 Cell[CellGroupData[{
 Cell[398975, 9448, 217, 4, 72, "Title",ExpressionUUID->"365eb2a4-c2ef-4c3f-9202-fa061a5b00a3"],
-Cell[399195, 9454, 466, 10, 68, "Input",ExpressionUUID->"9c286fac-fee4-4aa7-9840-dc12e032e358",
+Cell[399195, 9454, 525, 11, 68, "Input",ExpressionUUID->"9c286fac-fee4-4aa7-9840-dc12e032e358",
  InitializationCell->True]
-}, Closed]],
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[399698, 9469, 164, 3, 72, "Title",ExpressionUUID->"e9f5b843-b032-4204-8f80-f0079616cd07"],
-Cell[399865, 9474, 5712, 119, 761, "Input",ExpressionUUID->"d575d9ea-7910-41a1-8e6c-80fbc2946d3b",
+Cell[399757, 9470, 164, 3, 98, "Title",ExpressionUUID->"e9f5b843-b032-4204-8f80-f0079616cd07"],
+Cell[399924, 9475, 5712, 119, 761, "Input",ExpressionUUID->"d575d9ea-7910-41a1-8e6c-80fbc2946d3b",
  InitializationCell->True],
 Cell[CellGroupData[{
-Cell[405602, 9597, 151, 3, 67, "Section",ExpressionUUID->"b59fef07-4110-4a70-af17-ee434f836542"],
+Cell[405661, 9598, 151, 3, 67, "Section",ExpressionUUID->"b59fef07-4110-4a70-af17-ee434f836542"],
 Cell[CellGroupData[{
-Cell[405778, 9604, 2096, 47, 346, "Input",ExpressionUUID->"3df4e0f6-53f9-4529-b7ca-67dbe37335e5"],
-Cell[407877, 9653, 401, 6, 34, "Output",ExpressionUUID->"165b0144-3469-42cf-a256-f1d8367c1850"],
-Cell[408281, 9661, 1347, 33, 60, "Output",ExpressionUUID->"71dd130c-7fec-465c-b74c-21bb179efe10"],
-Cell[409631, 9696, 2629, 68, 101, "Output",ExpressionUUID->"08c7f5eb-1743-4911-b915-2281c5dd95eb"],
-Cell[412263, 9766, 400, 6, 34, "Output",ExpressionUUID->"47f5b596-819b-4924-934d-9de3137c066f"]
+Cell[405837, 9605, 2096, 47, 346, "Input",ExpressionUUID->"3df4e0f6-53f9-4529-b7ca-67dbe37335e5"],
+Cell[407936, 9654, 401, 6, 34, "Output",ExpressionUUID->"165b0144-3469-42cf-a256-f1d8367c1850"],
+Cell[408340, 9662, 1347, 33, 60, "Output",ExpressionUUID->"71dd130c-7fec-465c-b74c-21bb179efe10"],
+Cell[409690, 9697, 2629, 68, 101, "Output",ExpressionUUID->"08c7f5eb-1743-4911-b915-2281c5dd95eb"],
+Cell[412322, 9767, 400, 6, 34, "Output",ExpressionUUID->"47f5b596-819b-4924-934d-9de3137c066f"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[412700, 9777, 2096, 52, 304, "Input",ExpressionUUID->"7c8cd943-584a-4c2f-832d-0815b213fef4"],
-Cell[414799, 9831, 643, 15, 34, "Output",ExpressionUUID->"8ae3957a-4d6d-4c7d-830a-c253ac75dde8"]
+Cell[412759, 9778, 2096, 52, 304, "Input",ExpressionUUID->"7c8cd943-584a-4c2f-832d-0815b213fef4"],
+Cell[414858, 9832, 643, 15, 34, "Output",ExpressionUUID->"8ae3957a-4d6d-4c7d-830a-c253ac75dde8"]
 }, Open  ]],
-Cell[415457, 9849, 414, 8, 30, "Input",ExpressionUUID->"d6a71509-edf0-4abd-b9fd-f1d7a6399b95"]
+Cell[415516, 9850, 414, 8, 30, "Input",ExpressionUUID->"d6a71509-edf0-4abd-b9fd-f1d7a6399b95"]
 }, Open  ]]
 }, Closed]]
 }

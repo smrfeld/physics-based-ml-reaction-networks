@@ -146,7 +146,7 @@ exportDataBif[volExp_,ca2iMin_,ca2iMax_]:=Module[
 ,
 SetDirectory[NotebookDirectory[]];
 Do[
-f=OpenWrite["bifurcation_diagram_data/vol_"<>ToString[volExp]<>"_no_ip3r_"<>ToString[noIP3R]<>".txt"];
+f=OpenWrite["oscillation_range_data/vol_"<>ToString[volExp]<>"_no_ip3r_"<>ToString[noIP3R]<>".txt"];
 
 ip3Vals=ca2iMin[noIP3R][[;;,1]];
 Do[
@@ -172,7 +172,7 @@ ca2iMin=Association[];
 ca2iMax=Association[];
 
 Do[
-f="bifurcation_diagram_data/vol_"<>ToString[volExp]<>"_no_ip3r_"<>ToString[noIP3R]<>".txt";
+f="oscillation_range_data/vol_"<>ToString[volExp]<>"_no_ip3r_"<>ToString[noIP3R]<>".txt";
 data=Import[f,"Table"];
 
 ca2iMin[noIP3R]={};

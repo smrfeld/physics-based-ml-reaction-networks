@@ -18,7 +18,9 @@ All data is stored using [DVC (data version control)](https://dvc.org). You need
 ```
 dvc pull
 ```
-to get all the data. **Be aware** that this can be a lot to download, particularly because of the [stochastic_simulations](stochastic_simulations) - otherwise you can look for the `.dvc` files in the various directory and load those individually.
+to get all the data. 
+
+**BE AWARE** that this can be a lot to download, particularly because of the [stochastic_simulations](stochastic_simulations) - otherwise you can look for the `.dvc` files in the various directory and load those individually.
 
 ## Figures
 
