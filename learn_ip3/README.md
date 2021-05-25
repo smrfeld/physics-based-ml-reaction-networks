@@ -40,3 +40,7 @@ The resulting trained networks and data are in the `trained` folder.
 ## Extra: transformations Jacobian (supplemental material)
 
 To calculate the Jacobians for the parameter transformations, see the [transformation_jacobian](transformation_jacobian) folder.
+
+## Extra: analytic forms
+
+The analytic forms of the reaction approximations are explicitly given in the notebooks in the [analytic_forms](analytic_forms) folder. This also counts the number of nodes in the abstract syntax tree.
