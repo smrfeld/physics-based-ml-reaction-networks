@@ -1,5 +1,7 @@
 # Physics-based machine learning for modeling IP3 induced calcium oscillations
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4839127.svg)](https://doi.org/10.5281/zenodo.4839127)
+
 This repo. contains the code for the paper `Physics-based machine learning for modeling IP3 induced calcium oscillations`.
 
 <img src="figures_readme/fig_1.png" alt="drawing" width="600"/>
